@@ -6,7 +6,9 @@ describe('testes funcionais de login', () => {
 
         cy.wait(10000);
         // Aguarda o botão de login estar visível e clica
-        cy.get('#nav-signin-tooltip > .nav-action-signin-button > .nav-action-inner', { timeout: 10000 }).should('be.visible').click();
+        cy.get('#nav-link-accountList-nav-line-1', { timeout: 15000 })
+        .should('be.visible') // Garante que o botão é visível
+        .click();
         
         // Insere o email e avança
         cy.get('#ap_email').type("jailsoncavalcante493@gmail.com");
