@@ -2,6 +2,7 @@
 
 describe('testes funcionais de login', () => {
     it('deve realizar o login com sucesso', () => {
+        cy.wait(10000);
         cy.visit('https://www.amazon.com.br/ref=nav_logo');
 
         cy.wait(10000);
