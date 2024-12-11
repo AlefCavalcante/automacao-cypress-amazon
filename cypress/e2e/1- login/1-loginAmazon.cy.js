@@ -3,7 +3,8 @@
 describe('testes funcionais de login', () => {
     it('deve realizar o login com sucesso', () => {
         cy.visit('https://www.amazon.com.br/ref=nav_logo');
-        
+
+        cy.wait(10000);
         // Aguarda o botão de login estar visível e clica
         cy.get('#nav-signin-tooltip > .nav-action-signin-button > .nav-action-inner', { timeout: 10000 }).should('be.visible').click();
         
