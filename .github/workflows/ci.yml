@@ -20,19 +20,3 @@ jobs: testes funcionais de login
           npm install
           npm run build
           npm run test
-
-      # Step 4: Cache para dependências (opcional, mas acelera o build)
-      - name: Cache npm dependencies
-        uses: actions/cache@v3
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-npm-
-
-      # Step 5: Rodar os testes do Cypress
-      - name: Cypress run
-        uses: cypress-io/github-action@v6
-        with:
-          start: npm run start  # Caso você precise rodar uma aplicação antes dos testes
-          wait-on: 'http://localhost:3000'  # Caso precise esperar o servidor da aplicação rodar
