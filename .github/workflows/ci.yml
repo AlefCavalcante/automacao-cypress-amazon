@@ -1,31 +1,25 @@
-name: End-to-end tests
-on: 
-  push:
-    branches:
-      - main  # Ou a branch que você deseja monitorar
-  pull_request:
-    branches:
-      - main  # Ou a branch que você deseja monitorar para pull requests
+name: testes funcionais de login
 
-jobs:
-  cypress-run:
-    runs-on: ubuntu-24.04
+on: pull_request
+
+jobs: testes funcionais de login
+  continuos-integration: 
+    runs-on: ubuntu-latest
     
     steps:
-      # Step 1: Checkout do repositório
-      - name: Checkout
-        uses: actions/checkout@v4
-
       # Step 2: Configuração do Node.js
-      - name: Set up Node.js
         uses: actions/setup-node@v3
+        name: Using Node.js
+        uses: actions/setup-node@v2
         with:
-          node-version: '16'  # ou a versão de Node.js que você usa no projeto
+          node-version: v22.12.0  # ou a versão de Node.js que você usa no projeto
 
       # Step 3: Instalação das dependências npm
-      - name: Install dependencies
+      - name: run install, build and test
         run: |
           npm install
+          npm run build
+          npm run test
 
       # Step 4: Cache para dependências (opcional, mas acelera o build)
       - name: Cache npm dependencies
