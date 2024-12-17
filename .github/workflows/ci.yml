@@ -1,22 +1,19 @@
-name: testes funcionais de login
+name: Pipeline
 
-on: pull_request
+on: 
+  push:
+    branches:
+      - main
 
-jobs: testes funcionais de login
-  continuos-integration: 
+jobs:
+  build:
     runs-on: ubuntu-latest
-    
-    steps:
-      # Step 2: Configuração do Node.js
-        uses: actions/setup-node@v3
-        name: Using Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: v22.12.0  # ou a versão de Node.js que você usa no projeto
 
-      # Step 3: Instalação das dependências npm
-      - name: run install, build and test
-        run: |
-          npm install
-          npm run build
-          npm run test
+    steps:
+    - name: Checkout the repository
+      uses: actions/checkout@v2
+      with:
+        path: automacao-cypress-amazon
+
+    - name: Build with Maven
+      run: mvn clean install -f automacao-cypress-amazon/pom.xml

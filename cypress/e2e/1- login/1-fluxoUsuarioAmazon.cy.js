@@ -48,7 +48,7 @@ describe('Teste E2E - Fluxo de Login e Compra na Amazon', () => {
       // Verifique se está na pagina carinho
       cy.get('.a-size-extra-large').should('contain','Carrinho de compras');
 
-      // Verifica que o item foi adicionado ao carrinho
+      // Verificque se o item foi adicionado ao carrinho
       cy.get('.a-span2 > .a-color-secondary').should('contain','Preço');
     });
   
