@@ -1,19 +1,39 @@
-name: Pipeline
+name: Cypress Tests
 
 on: 
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  build:
+  cypress-run:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout the repository
-      uses: actions/checkout@v2
-      with:
-        path: automacao-cypress-amazon
+      # Passo 1: Checkout do repositório
+      - name: Checkout do código
+        uses: actions/checkout@v4
 
-    - name: Build with Maven
-      run: mvn clean install -f automacao-cypress-amazon/pom.xml
+      # Passo 2: Configurar o Node.js
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      # Passo 3: Instalar dependências do projeto
+      - name: Instalar dependências
+        run: |
+          npm install
+
+      # Passo 4: Instalar Cypress
+      - name: Instalar Cypress
+        run: |
+          npx cypress install
+
+      # Passo 5: Rodar testes no Cypress
+      - name: Executar Cypress E2E Tests
+        run: |
+          npx cypress run
